@@ -29,6 +29,7 @@ const heroes = [
     {
       name: "Moana",
       stage: [
+        "Moana begins her journey in the Ordinary World of her small island tribe where she yearns for adventure and to be free of the responsiblity of taking over her tribe. She wishes for "
 
       ]},
 

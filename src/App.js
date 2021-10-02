@@ -4,6 +4,7 @@ import steps from './steps';
 import realtime from './firebase';
 import { ref, onValue, push} from 'firebase/database'
 import './App.css';
+import StepCard from './StepCard';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   // State objects for which questions we are on and for the user's input
   const [currentStep, setCurrentStep] = useState(0);
   const [stepUserInput, setStepUserInput] = useState("")
+  const [heroJourney, setHeroJourney] = useState([])
 
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
@@ -20,33 +22,29 @@ function App() {
     // Set a listener to see and parse changes on our db
     onValue(dbRef, (snapshot) => {
       const dbData = snapshot.val()
+    
+    const heroData = dbData.userHero
+    
+    const heroArray = []
 
-      // const newArray = [];
-
-      // for (let propertyName in dbData) {
-      //   const bookObj = {
-      //     key: propertyName,
-      //     title: dbData[propertyName]
-      //   }
-      //   newArray.push(bookObj);
-      // }
-      // console.log(newArray)
+    for(let property in heroData) {
+      const stage = heroData[property]
+      
+      heroArray.push(stage)
+    }
+    setHeroJourney(heroArray)
     })
-  });
+  },[]);
 
 // This is what happens when the user clicks "Complete Step"
   const completeStepClick = (event) => {
     // Prevent the page from refreshing
     event.preventDefault();
     // Take the user info from the textArea
-    // console.log(stepUserInput)
-
     
     const dbRefUserHero = ref(realtime, `userHero`)
     push(dbRefUserHero, stepUserInput)
     
-
-
     setStepUserInput("")
     // Move to the next Step
     const nextStep = currentStep + 1;
@@ -74,6 +72,14 @@ function App() {
           <button>Complete Step</button>
         </form>
       </section>
+      </>
+
+      <>
+      {heroJourney.map((description, index) => {
+        return (
+          <StepCard  description={description} stage={index}/>
+        )
+      })}
       </>
     
     </div>
