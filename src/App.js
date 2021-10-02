@@ -39,12 +39,13 @@ function App() {
     // Prevent the page from refreshing
     event.preventDefault();
     // Take the user info from the textArea
-    console.log(stepUserInput)
+    // console.log(stepUserInput)
 
-    // // TESTING
-    // const dbRef = ref(realtime)
-    // push(dbRef, heroes)
-    // // ************************
+    
+    const dbRefUserHero = ref(realtime, `userHero`)
+    push(dbRefUserHero, stepUserInput)
+    
+
 
     setStepUserInput("")
     // Move to the next Step
@@ -82,3 +83,6 @@ function App() {
 }
 
 export default App;
+
+
+// Send user input to our database, get it back from the database, display it in it's own element
