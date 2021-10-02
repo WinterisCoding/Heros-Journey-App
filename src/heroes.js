@@ -25,7 +25,13 @@ const heroes = [
     "The climactic final battle takes place, the attack on the Death Star. The consequences have never been higher: if Luke fails, the Rebels will be destroyed and the Empire will rule the galaxy through fear. The odds are against him and his Rebel companions, and several pilots die during the attack, including Luke's childhood friend, Biggs. Ultimately, Luke succeeds in destroying the Death Star thanks to an at-the-buzzer save by Han Solo. While Luke isn't physically reborn here, we do see him undergo a change. Remembering Obi-Wan's words, Luke trusts the Force and comes into his powers. He takes his first steps toward becoming a Jedi.",
 
     "An elixir is a magical potion that is meant to bring about a positive effect. While Luke doesn't bring back a vial of super-juice, his return signifies that his friends and the Rebels will survive to fight another day. That's a good compromise, if you ask us. The elixir also represents the success of the journey, and we see Luke's success when he is presented the medal by Princess Leia. Luke wanted to leave the farm, join the larger universe, and make a difference that mattered. The ending scene shows us that he did just that. This galaxy isn't so far, far away for Luke any more."
-    ]}
+    ]},
+    {
+      name: "Moana",
+      stage: [
+
+      ]},
+
 ];
 
 export default heroes;
