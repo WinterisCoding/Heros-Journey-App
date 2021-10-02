@@ -27,12 +27,33 @@ const heroes = [
     "An elixir is a magical potion that is meant to bring about a positive effect. While Luke doesn't bring back a vial of super-juice, his return signifies that his friends and the Rebels will survive to fight another day. That's a good compromise, if you ask us. The elixir also represents the success of the journey, and we see Luke's success when he is presented the medal by Princess Leia. Luke wanted to leave the farm, join the larger universe, and make a difference that mattered. The ending scene shows us that he did just that. This galaxy isn't so far, far away for Luke any more."
     ]},
     {
-      name: "Moana",
-      stage: [
-        "Moana begins her journey in the Ordinary World of her small island tribe where she yearns for adventure and to be free of the responsiblity of taking over her tribe. She wishes for "
+    name: "Moana",
+    stage: [
+      "In the normal world Moana is the daughter of Tui, who is the chief of Motunui which is Moana's home island",
+        
+      "Moana's grandma, Tala, tells Moana that she has to find Maui and restore the heart of Ta' Fiti so that life will be restored to the islands",
+        
+      "Moana is tries to escape the reef and is unsuccesfull and considers giving up.",
+
+      "Moana's grandmother tells her the story of how their people used to be adventurers and shows her to the boats her people used to sail beyond the reef. She also tells Moana it is her destiny to restore the heart of Ta'Fiti because the ocean chose her.",
+
+      "With access to her new boat and her grandmother's passing Moana makes up her mind to journey beyond her island and restore the heart of Ta'Fiti, she gathers her supplies and sails past the reef for the first time and makes it out into the wider world of the open ocean ",
+
+      "Moana is blown off course by a storm and meets Maui, the disgraced demi-god of her people. After helping him escape his island he agrees to help Moana on her quest provided she helps him to recover his magical fish hook",
+
+      "Maui teaches Moana to sail and they escape from coconut pirates on the way to recover his fish hook",
+
+      "Maui and Moana descend into the lair of Tamatoa and after a dangerous confrontation recover Maui's fish hook.",
+
+      "Maui is able to use his magic again and helps guide Moana to the island where the Heart of Ta' Fiti should be restored.",
+
+      "Maui and Moana attempt to make it past Ta Ka but in the battle Maui's fish hook is damaged and they are forced to retreat. Maui loses faith and abandons Moana",
+
+      "After a visit from the spirit of her grandmother, and with the return of Maui, Moana is able to make it to the island and return the Heart of Ta'Fiti and resurrect the goddess from her transformed state of Ta Ka. Maui is given a new fishhook and life begins to return to the islands.",
+
+      "Moana returns to her people with the knowledge of sailing and the news of restored life on their and other islands. She leads her people beyond the reef to return to the ways of their ancestors."
 
       ]},
-
 ];
 
 export default heroes;

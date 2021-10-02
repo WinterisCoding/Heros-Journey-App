@@ -64,7 +64,7 @@ function App() {
       <section className="stepBox">
         <div className="stepTitle">{steps[currentStep].stepTitle}</div>
         <div className="stepDescription">{steps[currentStep].stepDescription}</div>
-        <div className="exampleName">{heroes[0].name}</div>
+        <div className="exampleName">{heroes[0].name}</div> 
         <div className="exampleStep">{heroes[0].stage[currentStep]}</div>
         <form action="submit" onSubmit={completeStepClick}>
           <label htmlFor="userStep">Write your hero's version of this step</label>

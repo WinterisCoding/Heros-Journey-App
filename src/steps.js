@@ -30,10 +30,12 @@ const steps = [
   {
     stepTitle: "The Ordeal",
     stepDescription: "Near the middle of the story, the hero enters a central space in the Special World and confronts death or faces his or her greatest fear. Out of the moment of death comes a new life." 
-  },{
+  },
+  {
     stepTitle: "The Reward",
     stepDescription: "The hero takes possession of the treasure won by facing death. There may be celebration, but there is also danger of losing the treasure again." 
-  },{
+  },
+  {
     stepTitle: "The Road Back",
     stepDescription: "About three-fourths of the way through the story, the hero is driven to complete the adventure, leaving the Special World to be sure the treasure is brought home. Often a chase scene signals the urgency and danger of the mission." 
   },{
