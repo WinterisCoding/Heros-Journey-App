@@ -6,7 +6,7 @@ const StepCard = (prop) => {
   return (
     
     <div>
-      <h1 className="draggable">{steps[prop.stage].stepTitle}</h1>
+      <h1>{steps[prop.stage].stepTitle}</h1>
       <p>{prop.description}</p>
     </div>
     
