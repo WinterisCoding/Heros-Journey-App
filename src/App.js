@@ -11,9 +11,13 @@ function App() {
 
   // State objects for which questions we are on and for the user's input
   const [currentStep, setCurrentStep] = useState(0);
-  const [stepUserInput, setStepUserInput] = useState("")
-  const [heroJourney, setHeroJourney] = useState([])
+  const [stepUserInput, setStepUserInput] = useState("");
+  const [heroJourney, setHeroJourney] = useState([]);
+  const [exampleHero, setExampleHero] = useState(heroes[1]);
+  const [heroSelection, setHeroSelection] = useState();
 
+
+  
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
     // create a reference to our realtime database (ie. a thing that POINTS to our specific database):
@@ -56,16 +60,41 @@ function App() {
     setStepUserInput(e.target.value)
   }
 
+  // Manages the submission of the choice of hero and sets the exmaple text on the page by updating state of example hero
+  const handleHeroChoice = (e) => {
+    e.preventDefault();
+    
+    setExampleHero(heroes[heroSelection])
+    }
+
+  // Gets the index value for the selected hero in the hero array and sets the state so it can be used in form submission
+  const handleHeroSelection = (e) => {
+    console.log(e.target.value)
+    setHeroSelection(e.target.value)
+  }
+
   return (
     <div >
       <h1>The Hero's Journey</h1>
       <>
 
+      <form action="submit" onSubmit={handleHeroChoice}>
+        <fieldset onChange={handleHeroSelection}>
+          <input type="radio" id="hero1" name="hero" value="0" />
+          <label htmlFor="hero1">{heroes[0].name}</label>
+          <input type="radio" id="hero2" name="hero" value="1"/>
+          <label htmlFor="hero2">{heroes[1].name}</label>
+          <button>Choose Hero</button>
+        </fieldset>
+      </form>
+      </>
+
+      <>
       <section className="stepBox">
         <div className="stepTitle">{steps[currentStep].stepTitle}</div>
         <div className="stepDescription">{steps[currentStep].stepDescription}</div>
-        <div className="exampleName">{heroes[0].name}</div> 
-        <div className="exampleStep">{heroes[0].stage[currentStep]}</div>
+        <div className="exampleName">{exampleHero.name}</div> 
+        <div className="exampleStep">{exampleHero.stage[currentStep]}</div>
         <form action="submit" onSubmit={completeStepClick}>
           <label htmlFor="userStep">Write your hero's version of this step</label>
           <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea>
@@ -91,4 +120,4 @@ function App() {
 export default App;
 
 
-// Send user input to our database, get it back from the database, display it in it's own element
+//  Make an element that exists until a choice is made at the beginning of the App.
