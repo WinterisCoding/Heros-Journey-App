@@ -1,6 +1,8 @@
-import heroes from "./heroes";
 
 const NameHero = () => {
+  
+  
+  
   return (
     <div>
       <form action="submit">

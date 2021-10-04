@@ -1,13 +1,12 @@
 import steps from "./steps"
 
 const StepCard = (prop) => {
-  
-  console.log(prop)
+
 
   return (
     
     <div>
-      {/* <h1>{steps[prop.stage].stepTitle}</h1> */}
+      <h3>{steps[prop.title].stepTitle}</h3>
       <p>{prop.stage}</p>
       
     </div>

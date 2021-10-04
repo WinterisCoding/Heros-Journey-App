@@ -32,14 +32,14 @@ function App() {
     const heroData = dbData.userHero
     
     const heroArray = []
-    
-    console.log(currentStep)
 
+    console.log(heroData)
+    
     for(let property in heroData) {
       const heroObject = {
         key: property,
-        title: steps[currentStep].stepTitle,
-        stage: heroData[property]}
+        title: [heroData[property].step],
+        stage: heroData[property].input}
       
       heroArray.push(heroObject)
     }
@@ -53,8 +53,13 @@ function App() {
     event.preventDefault();
     // Take the user info from the textArea
     
+    const dataObject = {
+      step: currentStep, 
+      input: stepUserInput}
+
+
     const dbRefUserHero = ref(realtime, `userHero`)
-    push(dbRefUserHero, stepUserInput)
+    push(dbRefUserHero, dataObject)
     
     setStepUserInput("")
     // Move to the next Step
@@ -119,7 +124,6 @@ function App() {
       <section>
         <div className="wrapper">
           {heroJourney.map((heroObject) => {
-            // console.log(description)
             return (
               <StepCard 
               key={heroObject.key}
