@@ -8,3 +8,89 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* *************************** */
+/*      Typography Styles      */
+/* *************************** */
+
+
+/* *************************** */
+/*        General Styles       */
+/* *************************** */
+
+body {
+  font-size: 125%;
+  /* background: linear-gradient(#e66465, #9198e5);; */
+  height: 100vh;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  margin: 2%;
+}
+
+/* *************************** */
+/*       Header Styles         */
+/* *************************** */
+.custom-shape-divider-top-1633374684 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1633374684 svg {
+  position: relative;
+  display: block;
+  width: calc(143% + 1.3px);
+  height: 191px;
+}
+
+.custom-shape-divider-top-1633374684 .shape-fill {
+  fill: #FCFBFB;
+}
+
+/* *************************** */
+/*    Hero Select Styles       */
+/* *************************** */
+
+.heroSelect {
+  margin: 50px 0px;
+  text-align: center;
+}
+
+.heroSelectForm {
+  display: flex;
+  border-style: none;
+  justify-content: center;
+}
+
+.heroSelectForm input,
+.heroSelectForm label {
+  margin: 0px 20px;
+}
+
+
+/* *************************** */
+/*      Step Box Container     */
+/* *************************** */
+
+.stepBoxContainer {
+  text-align: center;
+
+}
+
+.stepBoxForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
