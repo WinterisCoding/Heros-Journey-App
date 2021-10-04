@@ -13,8 +13,9 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [stepUserInput, setStepUserInput] = useState("");
   const [heroJourney, setHeroJourney] = useState([]);
-  const [exampleHero, setExampleHero] = useState(heroes[1]);
+  const [exampleHero, setExampleHero] = useState(heroes[2]);
   const [heroSelection, setHeroSelection] = useState();
+  const [inputDisplay, setInputDisplay] = useState(true)
 
 
   
@@ -52,7 +53,15 @@ function App() {
     setStepUserInput("")
     // Move to the next Step
     const nextStep = currentStep + 1;
-    setCurrentStep(nextStep);
+
+    // Error handling so the user can't go beyond the last step.
+    if (currentStep <= 10) {
+      setCurrentStep(nextStep);
+      
+    } else {
+      setCurrentStep(nextStep)
+      setInputDisplay(false);
+    }
   }
 
   // Allows us to track what is happening in the input so that we can push to firebase
@@ -69,7 +78,6 @@ function App() {
 
   // Gets the index value for the selected hero in the hero array and sets the state so it can be used in form submission
   const handleHeroSelection = (e) => {
-    console.log(e.target.value)
     setHeroSelection(e.target.value)
   }
 
@@ -97,8 +105,12 @@ function App() {
         <div className="exampleStep">{exampleHero.stage[currentStep]}</div>
         <form action="submit" onSubmit={completeStepClick}>
           <label htmlFor="userStep">Write your hero's version of this step</label>
-          <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea>
-          <button>Complete Step</button>
+          {
+            inputDisplay? <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea> : null
+          }
+          {
+          inputDisplay? <button>Complete Step</button> : null
+          }
         </form>
       </section>
       </>
@@ -106,7 +118,9 @@ function App() {
       <>
       {heroJourney.map((description, index) => {
         return (
-          <StepCard  description={description} stage={index}/>
+          <StepCard  
+          description={description} 
+          stage={index}/>
         )
       })}
       </>
@@ -120,4 +134,3 @@ function App() {
 export default App;
 
 
-//  Make an element that exists until a choice is made at the beginning of the App.

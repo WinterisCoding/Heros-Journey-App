@@ -45,6 +45,11 @@ const steps = [
     stepTitle: "Return with the Elixir",
     stepDescription: "The hero returns home or continues the journey, bearing some element of the treasure that has the power to transform the world as the hero has been transformed." 
   },
+  {
+    stepTitle: "Your Journey is complete!",
+    stepDescription: "Please check below to see your journey laid out for you!" 
+  }
+  
 ]; 
 
 export default steps;

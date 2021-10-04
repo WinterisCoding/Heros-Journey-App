@@ -54,6 +54,10 @@ const heroes = [
       "Moana returns to her people with the knowledge of sailing and the news of restored life on their and other islands. She leads her people beyond the reef to return to the ways of their ancestors."
 
       ]},
+      {
+      name: "",
+      stage: ["", "", "", "", "", "","","","","","",""]
+      },
 ];
 
 export default heroes;
