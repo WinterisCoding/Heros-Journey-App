@@ -5,6 +5,7 @@ import realtime from './firebase';
 import { ref, onValue, push} from 'firebase/database'
 import './App.css';
 import StepCard from './StepCard';
+import Header from './Header';
 
 
 function App() {
@@ -83,9 +84,9 @@ function App() {
 
   return (
     <div >
-      <h1>The Hero's Journey</h1>
+      <Header />
+      
       <>
-
       <form action="submit" onSubmit={handleHeroChoice}>
         <fieldset onChange={handleHeroSelection}>
           <input type="radio" id="hero1" name="hero" value="0" />
@@ -101,17 +102,17 @@ function App() {
       <section className="stepBox">
         <div className="stepTitle">{steps[currentStep].stepTitle}</div>
         <div className="stepDescription">{steps[currentStep].stepDescription}</div>
-        <div className="exampleName">{exampleHero.name}</div> 
+        {
+        inputDisplay? <div className="exampleName">{exampleHero.name}</div> : null 
+        }
         <div className="exampleStep">{exampleHero.stage[currentStep]}</div>
-        <form action="submit" onSubmit={completeStepClick}>
+        {
+          inputDisplay? <form action="submit" onSubmit={completeStepClick}> 
           <label htmlFor="userStep">Write your hero's version of this step</label>
-          {
-            inputDisplay? <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea> : null
-          }
-          {
-          inputDisplay? <button>Complete Step</button> : null
-          }
-        </form>
+          <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea>
+          <button>Complete Step</button>
+        </form> : null
+        }
       </section>
       </>
 
