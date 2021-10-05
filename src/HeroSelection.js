@@ -3,8 +3,6 @@ import heroes from "./heroes";
 
 const HeroSelection = (props) => {
 
-  
-  
   return (
     <>
       <section className="heroSelect">

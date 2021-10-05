@@ -19,6 +19,7 @@ function App() {
   const [exampleHero, setExampleHero] = useState(heroes[2]);
   const [heroSelection, setHeroSelection] = useState();
   const [inputDisplay, setInputDisplay] = useState(true)
+  const [heroSelected, setHeroSelected] = useState(true)
 
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
@@ -56,7 +57,6 @@ function App() {
       step: currentStep, 
       input: stepUserInput}
 
-
     const dbRefUserHero = ref(realtime, `userHero`)
     push(dbRefUserHero, dataObject)
     
@@ -83,7 +83,8 @@ function App() {
   const handleHeroChoice = (e) => {
     e.preventDefault();
     
-    setExampleHero(heroes[heroSelection])
+    setExampleHero(heroes[heroSelection]);
+    setHeroSelected(false);
     }
 
   // Gets the index value for the selected hero in the hero array and sets the state so it can be used in form submission
@@ -91,22 +92,28 @@ function App() {
     setHeroSelection(e.target.value)
   }
 
-
   const handleDelete = (id) => {
+    const userStep = ref(realtime, `userHero/${id}`)
+    remove(userStep)
+  }
 
-    const dbRef = ref(realtime, `userHero/${id}`)
-    
-    remove(dbRef)
-    
+  
+  const handleStartOver = () => {
+    const userHero = ref(realtime, 'userHero')
+    remove(userHero)
+    setCurrentStep(0)
+    setInputDisplay(true)
   }
 
   return (
     <div >
       <Header  />
       
-      <HeroSelection 
+      {
+      heroSelected? <HeroSelection 
       handleHeroChoice={handleHeroChoice}
-      handleHeroSelection={handleHeroSelection} />
+      handleHeroSelection={handleHeroSelection} /> : null
+      }
 
       <>
       <section className="stepBox">
@@ -132,7 +139,6 @@ function App() {
       <section>
         <div className="wrapper">
           {heroJourney.map((heroObject) => {
-            // console.log(heroObject)
             return (
                 <StepCard 
                 key={heroObject.key}
@@ -143,10 +149,7 @@ function App() {
                 />
               )
           })}
-
-          <>
-          
-          </>
+          <button onClick={handleStartOver}>Start Your Journey Anew!</button>
         </div>
       </section>
       </>
