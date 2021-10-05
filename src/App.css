@@ -62,8 +62,12 @@ h1 {
 /* *************************** */
 
 .heroSelect {
-  margin: 50px 0px;
   text-align: center;
+  background-color: white;
+  z-index:10;
+  height: 90vh;
+  width: 100vw;
+  position: absolute;
 }
 
 .heroSelectForm {
