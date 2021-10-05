@@ -103,6 +103,8 @@ function App() {
     remove(userHero)
     setCurrentStep(0)
     setInputDisplay(true)
+    setHeroSelected(true)
+    setExampleHero(heroes[2])
   }
 
   return (
