@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import heroes from "./heroes";
 import steps from './steps';
 import realtime from './firebase';
-import { ref, onValue, push} from 'firebase/database'
+import { ref, onValue, push, remove} from 'firebase/database'
 import './App.css';
 import StepCard from './StepCard';
 import Header from './Header';
@@ -25,6 +25,7 @@ function App() {
     // create a reference to our realtime database (ie. a thing that POINTS to our specific database):
     const dbRef = ref(realtime);
 
+    
     // Set a listener to see and parse changes on our db
     onValue(dbRef, (snapshot) => {
       const dbData = snapshot.val()
@@ -32,8 +33,6 @@ function App() {
     const heroData = dbData.userHero
     
     const heroArray = []
-
-    console.log(heroData)
     
     for(let property in heroData) {
       const heroObject = {
@@ -92,6 +91,15 @@ function App() {
     setHeroSelection(e.target.value)
   }
 
+
+  const handleDelete = (id) => {
+
+    const dbRef = ref(realtime, `userHero/${id}`)
+    
+    remove(dbRef)
+    
+  }
+
   return (
     <div >
       <Header  />
@@ -124,13 +132,21 @@ function App() {
       <section>
         <div className="wrapper">
           {heroJourney.map((heroObject) => {
+            // console.log(heroObject)
             return (
-              <StepCard 
-              key={heroObject.key}
-              title={heroObject.title}
-              stage={heroObject.stage}/>
+                <StepCard 
+                key={heroObject.key}
+                id={heroObject.key}
+                title={heroObject.title}
+                stage={heroObject.stage}
+                handleDelete={handleDelete}
+                />
               )
           })}
+
+          <>
+          
+          </>
         </div>
       </section>
       </>
