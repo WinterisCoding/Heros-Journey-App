@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 import heroes from "./heroes";
 import steps from './steps';
 import realtime from './firebase';
-import { ref, onValue, push} from 'firebase/database'
+import { ref, onValue, push, remove} from 'firebase/database'
 import './App.css';
 import StepCard from './StepCard';
+import Header from './Header';
+import HeroSelection from './HeroSelection';
+// import { VerticalTimeline } from 'react-vertical-timeline-component';
+
 
 
 function App() {
@@ -16,14 +20,14 @@ function App() {
   const [exampleHero, setExampleHero] = useState(heroes[2]);
   const [heroSelection, setHeroSelection] = useState();
   const [inputDisplay, setInputDisplay] = useState(true)
+  const [heroSelected, setHeroSelected] = useState(true)
 
-
-  
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
     // create a reference to our realtime database (ie. a thing that POINTS to our specific database):
     const dbRef = ref(realtime);
 
+    
     // Set a listener to see and parse changes on our db
     onValue(dbRef, (snapshot) => {
       const dbData = snapshot.val()
@@ -31,11 +35,14 @@ function App() {
     const heroData = dbData.userHero
     
     const heroArray = []
-
+    
     for(let property in heroData) {
-      const stage = heroData[property]
+      const heroObject = {
+        key: property,
+        title: [heroData[property].step],
+        stage: heroData[property].input}
       
-      heroArray.push(stage)
+      heroArray.push(heroObject)
     }
     setHeroJourney(heroArray)
     })
@@ -47,8 +54,12 @@ function App() {
     event.preventDefault();
     // Take the user info from the textArea
     
+    const dataObject = {
+      step: currentStep, 
+      input: stepUserInput}
+
     const dbRefUserHero = ref(realtime, `userHero`)
-    push(dbRefUserHero, stepUserInput)
+    push(dbRefUserHero, dataObject)
     
     setStepUserInput("")
     // Move to the next Step
@@ -73,7 +84,8 @@ function App() {
   const handleHeroChoice = (e) => {
     e.preventDefault();
     
-    setExampleHero(heroes[heroSelection])
+    setExampleHero(heroes[heroSelection]);
+    setHeroSelected(false);
     }
 
   // Gets the index value for the selected hero in the hero array and sets the state so it can be used in form submission
@@ -81,53 +93,77 @@ function App() {
     setHeroSelection(e.target.value)
   }
 
+  const handleDelete = (id) => {
+    const userStep = ref(realtime, `userHero/${id}`)
+    remove(userStep)
+  }
+
+  const handleStartOver = () => {
+    const userHero = ref(realtime, 'userHero')
+    remove(userHero)
+    setCurrentStep(0)
+    setInputDisplay(true)
+    setHeroSelected(true)
+    setExampleHero(heroes[2])
+  }
+
   return (
     <div >
-      <h1>The Hero's Journey</h1>
-      <>
-
-      <form action="submit" onSubmit={handleHeroChoice}>
-        <fieldset onChange={handleHeroSelection}>
-          <input type="radio" id="hero1" name="hero" value="0" />
-          <label htmlFor="hero1">{heroes[0].name}</label>
-          <input type="radio" id="hero2" name="hero" value="1"/>
-          <label htmlFor="hero2">{heroes[1].name}</label>
-          <button>Choose Hero</button>
-        </fieldset>
-      </form>
-      </>
+      <Header  />
+      
+      {
+      heroSelected? <HeroSelection 
+      handleHeroChoice={handleHeroChoice}
+      handleHeroSelection={handleHeroSelection} /> : null
+      }
 
       <>
       <section className="stepBox">
-        <div className="stepTitle">{steps[currentStep].stepTitle}</div>
-        <div className="stepDescription">{steps[currentStep].stepDescription}</div>
-        <div className="exampleName">{exampleHero.name}</div> 
-        <div className="exampleStep">{exampleHero.stage[currentStep]}</div>
-        <form action="submit" onSubmit={completeStepClick}>
-          <label htmlFor="userStep">Write your hero's version of this step</label>
+        <div className="wrapper stepBoxContainer">
+          <h2 className="stepTitle">{steps[currentStep].stepTitle}</h2>
+          <p className="stepDescription">{steps[currentStep].stepDescription}</p>
           {
-            inputDisplay? <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea> : null
+            inputDisplay? <h4 className="exampleName">{exampleHero.name}</h4> : null 
           }
+          <p className="exampleStep">{exampleHero.stage[currentStep]}</p>
           {
-          inputDisplay? <button>Complete Step</button> : null
+            inputDisplay? <form action="submit" onSubmit={completeStepClick} className="stepBoxForm"> 
+            <label htmlFor="userStep">Write your hero's version of this step</label>
+            <textarea name="userStep" id="userStep" value={stepUserInput} onChange={handleChange}></textarea>
+            <button>Complete Step</button>
+          </form> : null
           }
-        </form>
+        </div>
       </section>
       </>
 
       <>
-      {heroJourney.map((description, index) => {
-        return (
-          <StepCard  
-          description={description} 
-          stage={index}/>
-        )
-      })}
+      <section>
+        <div className="wrapper">
+          {heroJourney.map((heroObject) => {
+            return (
+                <StepCard 
+                key={heroObject.key}
+                id={heroObject.key}
+                title={heroObject.title}
+                stage={heroObject.stage}
+                handleDelete={handleDelete}
+                />
+              )
+          })}
+        </div>
+      </section>
+      </>
+
+      <>
+      {
+        currentStep? <div className="buttonSection wrapper">
+          <button onClick={handleStartOver}>Start Your Journey Over!</button>
+        </div> : null
+      }
       </>
     
-    </div>
-
-
+    </div> 
   );
 }
 
