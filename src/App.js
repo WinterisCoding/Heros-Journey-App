@@ -7,7 +7,9 @@ import './App.css';
 import StepCard from './StepCard';
 import Header from './Header';
 import HeroSelection from './HeroSelection';
-// import { VerticalTimeline } from 'react-vertical-timeline-component';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+
+import 'react-vertical-timeline-component/style.min.css'
 
 
 
