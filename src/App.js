@@ -97,7 +97,6 @@ function App() {
     remove(userStep)
   }
 
-  
   const handleStartOver = () => {
     const userHero = ref(realtime, 'userHero')
     remove(userHero)
@@ -120,16 +119,16 @@ function App() {
       <>
       <section className="stepBox">
         <div className="wrapper stepBoxContainer">
-          <div className="stepTitle">{steps[currentStep].stepTitle}</div>
-          <div className="stepDescription">{steps[currentStep].stepDescription}</div>
+          <h2 className="stepTitle">{steps[currentStep].stepTitle}</h2>
+          <p className="stepDescription">{steps[currentStep].stepDescription}</p>
           {
-            inputDisplay? <div className="exampleName">{exampleHero.name}</div> : null 
+            inputDisplay? <h4 className="exampleName">{exampleHero.name}</h4> : null 
           }
-          <div className="exampleStep">{exampleHero.stage[currentStep]}</div>
+          <p className="exampleStep">{exampleHero.stage[currentStep]}</p>
           {
             inputDisplay? <form action="submit" onSubmit={completeStepClick} className="stepBoxForm"> 
             <label htmlFor="userStep">Write your hero's version of this step</label>
-            <textarea name="userStep" id="userStep" cols="30" rows="10" value={stepUserInput} onChange={handleChange}></textarea>
+            <textarea name="userStep" id="userStep" value={stepUserInput} onChange={handleChange}></textarea>
             <button>Complete Step</button>
           </form> : null
           }
@@ -151,9 +150,16 @@ function App() {
                 />
               )
           })}
-          <button onClick={handleStartOver}>Start Your Journey Anew!</button>
         </div>
       </section>
+      </>
+
+      <>
+      {
+        currentStep? <div className="buttonSection wrapper">
+          <button onClick={handleStartOver}>Start Your Journey Over!</button>
+        </div> : null
+      }
       </>
     
     </div> 
