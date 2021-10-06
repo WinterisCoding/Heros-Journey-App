@@ -5,7 +5,7 @@ import realtime from './firebase';
 import { ref, onValue, push, remove} from 'firebase/database'
 import 'react-vertical-timeline-component/style.min.css'
 import './App.css';
-// import StepCard from './StepCard';
+
 import Header from './Header';
 import HeroSelection from './HeroSelection';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
