@@ -151,7 +151,6 @@ function App() {
                   >
                     <h3 className="vertical-timeline-element-title">{steps[heroObject.title].stepTitle}</h3>
                     <p>{heroObject.stage}</p>
-                    <button onClick={handleDelete}>Delete Me</button>
                   </VerticalTimelineElement>
                 )
               })

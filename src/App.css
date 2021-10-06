@@ -53,10 +53,14 @@ button {
   box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
 }
 
-/* button:hover,
+button:hover,
 button:focus {
-
-} */
+  background-color: rgb(151, 19, 45);
+  border: 3px solid crimson;
+  transition: all;
+  transition-timing-function: ease-in;
+  transition-duration: 0.2s;
+}
 
 /* *************************** */
 /*       Header Styles         */
@@ -77,10 +81,10 @@ header {
   background-color: white;
   z-index:10;
   height: 90vh;
-  width: 100vw;
+  width: 99vw;
   position: absolute;
   top: 120px;
-  left: 0;
+  left: -6px;
 }
 
 .heroSelectForm {
@@ -93,6 +97,19 @@ header {
   height: 600px;
 }
 
+.heroSelectForm input:checked + label {
+  border: 2px solid rgb(173, 19, 50);
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 10px 25px;
+}
+
+.heroSelectForm input:focus + label {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+  scale: 105%;
+  transition: all;
+  transition-timing-function: ease;
+  transition-duration: 0.2s;
+}
+
 .heroInputContainer {
   width: calc(40% - 80px);
   max-width: 355px;
@@ -103,11 +120,14 @@ header {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.heroInputContainer:hover,
-.heroInputContainer:focus {
+.heroInputContainer:hover {
   box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
   scale: 105%;
+  transition: all;
+  transition-timing-function: ease;
+  transition-duration: 0.2s;
 }
+
 
 .heroInputContainer img {
   height: 90%;
