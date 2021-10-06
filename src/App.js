@@ -140,6 +140,28 @@ function App() {
       </>
 
       <>
+      <section className="timeline">
+        <div className="wrapper">
+          <VerticalTimeline>
+            {
+              heroJourney.map((heroObject) => {
+                return (
+                  <VerticalTimelineElement
+                    key={heroObject.key}
+                  >
+                    <h3 className="vertical-timeline-element-title">{steps[heroObject.title].stepTitle}</h3>
+                    <p>{heroObject.stage}</p>
+                    <button onClick={handleDelete}>Delete Me</button>
+                  </VerticalTimelineElement>
+                )
+              })
+            }
+          </VerticalTimeline>
+        </div>
+      </section>
+      </>
+
+      <>
       <section>
         <div className="wrapper">
           {heroJourney.map((heroObject) => {

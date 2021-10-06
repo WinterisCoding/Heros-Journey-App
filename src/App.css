@@ -157,6 +157,10 @@ header {
   justify-content: center;
 }
 
+.vertical-timeline.vertical-timeline--two-columns::before {
+  background: rgb(173, 19, 50);
+}
+
 /* *************************** */
 /*         Media Queries       */
 /* *************************** */
