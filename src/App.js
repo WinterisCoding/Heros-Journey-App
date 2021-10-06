@@ -3,13 +3,14 @@ import heroes from "./heroes";
 import steps from './steps';
 import realtime from './firebase';
 import { ref, onValue, push, remove} from 'firebase/database'
+import 'react-vertical-timeline-component/style.min.css'
 import './App.css';
-import StepCard from './StepCard';
+// import StepCard from './StepCard';
 import Header from './Header';
 import HeroSelection from './HeroSelection';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import Footer from './Footer';
 
-import 'react-vertical-timeline-component/style.min.css'
 
 
 
@@ -95,10 +96,11 @@ function App() {
     setHeroSelection(e.target.value)
   }
 
-  const handleDelete = (id) => {
-    const userStep = ref(realtime, `userHero/${id}`)
-    remove(userStep)
-  }
+  // For the depreciated Step Card feature. Did all that work to figure out delete from database only for it to not be necessary lol
+  // const handleDelete = (id) => {
+  //   const userStep = ref(realtime, `userHero/${id}`)
+  //   remove(userStep)
+  // }
 
   const handleStartOver = () => {
     const userHero = ref(realtime, 'userHero')
@@ -139,6 +141,8 @@ function App() {
       </section>
       </>
 
+      {
+        currentStep? 
       <>
       <section className="timeline">
         <div className="wrapper">
@@ -148,6 +152,7 @@ function App() {
                 return (
                   <VerticalTimelineElement
                     key={heroObject.key}
+                    
                   >
                     <h3 className="vertical-timeline-element-title">{steps[heroObject.title].stepTitle}</h3>
                     <p>{heroObject.stage}</p>
@@ -158,9 +163,11 @@ function App() {
           </VerticalTimeline>
         </div>
       </section>
-      </>
+      </> : null 
+      }
 
-      <>
+      {/* This was the original way of displaying the solution, it has been surplanted by an infinitly sexier version */}
+      {/* <>
       <section>
         <div className="wrapper">
           {heroJourney.map((heroObject) => {
@@ -176,8 +183,7 @@ function App() {
           })}
         </div>
       </section>
-      </>
-
+      </> */}
       <>
       {
         currentStep? <div className="buttonSection wrapper">
@@ -185,7 +191,9 @@ function App() {
         </div> : null
       }
       </>
-    
+
+      
+      <Footer />
     </div> 
   );
 }
