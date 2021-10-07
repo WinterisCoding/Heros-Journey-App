@@ -22,7 +22,7 @@ function App() {
   const [heroSelection, setHeroSelection] = useState();
   const [inputDisplay, setInputDisplay] = useState(true);
   const [heroSelected, setHeroSelected] = useState(true);
-  const [value, setValue] = useState()
+  const [value, setValue] = useState();
 
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
@@ -194,7 +194,7 @@ function App() {
       }
       </>
       
-      <Footer />
+      <Footer value={value}/>
     </div> 
   );
 }
