@@ -5,13 +5,11 @@ import realtime from './firebase';
 import { ref, onValue, push, remove} from 'firebase/database'
 import 'react-vertical-timeline-component/style.min.css'
 import './App.css';
-
+import InlineEdit from './InlineEdit';
 import Header from './Header';
 import HeroSelection from './HeroSelection';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import Footer from './Footer';
-
-
 
 
 function App() {
@@ -22,8 +20,9 @@ function App() {
   const [heroJourney, setHeroJourney] = useState([]);
   const [exampleHero, setExampleHero] = useState(heroes[2]);
   const [heroSelection, setHeroSelection] = useState();
-  const [inputDisplay, setInputDisplay] = useState(true)
-  const [heroSelected, setHeroSelected] = useState(true)
+  const [inputDisplay, setInputDisplay] = useState(true);
+  const [heroSelected, setHeroSelected] = useState(true);
+  const [value, setValue] = useState()
 
   // We call use effect with an empty dependancy array, which means it will only execute it's callback function one time, when the component first mounts.
   useEffect( () => {
@@ -102,6 +101,8 @@ function App() {
   //   remove(userStep)
   // }
 
+  // This function handles what happens when the user wishes to start over, it resets everything to the state when the site initially loads
+  // And deletes the UserHero branch from Firebase to prepare for a new hero
   const handleStartOver = () => {
     const userHero = ref(realtime, 'userHero')
     remove(userHero)
@@ -114,7 +115,6 @@ function App() {
   return (
     <div >
       <Header  />
-      
       {
       heroSelected? <HeroSelection 
       handleHeroChoice={handleHeroChoice}
@@ -149,13 +149,15 @@ function App() {
           <VerticalTimeline>
             {
               heroJourney.map((heroObject) => {
+
                 return (
                   <VerticalTimelineElement
                     key={heroObject.key}
                     
                   >
                     <h3 className="vertical-timeline-element-title">{steps[heroObject.title].stepTitle}</h3>
-                    <p>{heroObject.stage}</p>
+                    <InlineEdit value={heroObject.stage} setValue={setValue}  />
+                    <p class="guide">* You can edit your entry here!</p>
                   </VerticalTimelineElement>
                 )
               })
@@ -191,7 +193,6 @@ function App() {
         </div> : null
       }
       </>
-
       
       <Footer />
     </div> 
