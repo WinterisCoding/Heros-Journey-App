@@ -1,3 +1,12 @@
+Credit for the inline editable component goes to Emma Goto's wonderful tutorial that can be found here:
+
+This project was made for Juno College Bootcamp as a solo react project. It is an app that guides the user throught the experience of charting a hero's journey. It makes use of React, as well as Firebase and the Vertical timeline component by Stephane Monnot found here: https://www.npmjs.com/package/react-vertical-timeline-component
+
+I would also like to credit my wonderful classmates in Cohort 36 for their help brainstorming, bugfixing, and for generally being creative and fun people to code alongside.
+
+https://www.emgoto.com/react-inline-edit/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
