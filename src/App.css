@@ -251,7 +251,7 @@ footer {
     padding-left: 0px; 
   }
   .heroSelect {
-    top: 16%;
+    top: 18%;
   }
   .heroSelectForm {
     height: 500px
@@ -270,7 +270,11 @@ footer {
     height: auto;
   }
   .heroSelect {
-    top: 24%;
+    top: 20%;
+    height: 130%;
+  }
+  h1{ 
+    padding: 25px
   }
 }
 
