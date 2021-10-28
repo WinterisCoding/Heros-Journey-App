@@ -56,9 +56,11 @@ img {
 
 button {
   border-style: none;
+  border-radius: 10px;
   cursor: pointer;
   padding: 20px;
   background-color: rgb(173, 19, 50);
+  border: 3px solid rgb(173, 19, 50);
   color: white;
   text-transform: uppercase;
   box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
@@ -66,8 +68,8 @@ button {
 
 button:hover,
 button:focus {
-  background-color: rgb(151, 19, 45);
-  border: 3px solid crimson;
+  background-color: white;
+  color: rgb(173, 19, 50);
   transition: all;
   transition-timing-function: ease-in;
   transition-duration: 0.2s;
@@ -95,6 +97,15 @@ header {
   background-image: url(./assets/headerwave.svg);
   margin-top: 0;
 }
+
+.logoutButton {
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  box-shadow: none;
+
+}
+
 
 /* *************************** */
 /*    Hero Select Styles       */
@@ -240,6 +251,29 @@ footer {
   margin-top: 50px;
 }
 
+/* *************************** */
+/*        Login Styles         */
+/* *************************** */
+
+.loginContainer {
+  height: 100vh;
+  width: 80vw;
+  background-color: white;
+  display: flex;
+  padding: 5%;
+}
+
+.loginContainer img {
+  width: 50%;
+  object-fit: cover;
+  padding: 0 3%;
+}
+
+.loginText {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
 
 /* *************************** */
 /*         Media Queries       */
@@ -259,6 +293,16 @@ footer {
 }
 
 @media (max-width: 525px) {
+  .loginContainer {
+    flex-direction: column;
+  }
+  .loginContainer img {
+    width: 100%;
+    height: 200px;
+  }
+  .loginText {
+    width: 100%;
+  }
   .heroInputContainer {
     width: 75%;
   }
@@ -277,4 +321,5 @@ footer {
     padding: 25px
   }
 }
+
 
