@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const InlineEdit = ({ value, setValue}) => {
+const InlineEdit = ({value, setValue}) => {
   const [editingValue, setEditingValue] = useState(value)
 
   const onChange = (event) => setEditingValue(event.target.value)
