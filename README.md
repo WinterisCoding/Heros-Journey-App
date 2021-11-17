@@ -7,6 +7,10 @@ I would also like to credit my wonderful classmates in Cohort 36 for their help 
 Inpiration and Credit for the inline editable component goes to Emma Goto's wonderful tutorial that can be found here:
 https://www.emgoto.com/react-inline-edit/
 
+The most recent iteration of the app includes a login function using Firebase's built in authentication tools as well as a login screen etc.
+
+The current work on the app is to add the ability to store and recall multiple hero's from each user's entry in the database.
+
 
 # Getting Started with Create React App
 
