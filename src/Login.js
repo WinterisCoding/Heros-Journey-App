@@ -23,7 +23,6 @@ useEffect(() => {
         if (user) {
             handleLogin(true)
             handleUserName(user.uid)
-            console.log(user.uid)
         } else {
             handleLogin(false)
             handleUserName("")

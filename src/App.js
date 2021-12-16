@@ -42,7 +42,6 @@ function App() {
     // create a reference to our realtime database (ie. a thing that POINTS to our specific database):
     const dbRef = ref(realtime);
 
-    
     // Set a listener to see and parse changes on our db
     onValue(dbRef, (snapshot) => {
       const dbData = snapshot.val()
@@ -126,10 +125,15 @@ function App() {
     setSignedIn(false);
 }
 
+// A function to handle setting the user ID
 const handleUserName = (input) => {
   setUserName(input)
-
 }
+
+// A function to handle the update click
+// const handleUpdate = () = > {
+
+// }
 
   return (
     <div>
@@ -172,14 +176,14 @@ const handleUserName = (input) => {
             <VerticalTimeline>
               {
                 heroJourney.map((heroObject) => {
-
+                  console.log(heroObject)
                   return (
                     <VerticalTimelineElement
                       key={heroObject.key}
                       
                     >
                       <h3 className="vertical-timeline-element-title">{steps[heroObject.title].stepTitle}</h3>
-                      <InlineEdit value={heroObject.stage} setValue={setValue}  />
+                      <InlineEdit id={heroObject.key} value={heroObject.stage} setValue={setValue} name={userName}  />
                       <p className="guide">* You can edit your entry here!</p>
                     </VerticalTimelineElement>
                   )
@@ -195,6 +199,7 @@ const handleUserName = (input) => {
         {
           currentStep? <div className="buttonSection wrapper">
             <button onClick={handleStartOver}>Start Your Journey Over!</button>
+          
           </div> : null
         }
         </>

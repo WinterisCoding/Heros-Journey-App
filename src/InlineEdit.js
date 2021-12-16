@@ -1,9 +1,14 @@
 import { useState } from "react"
+import  realtime  from './firebase';
+import { ref, update } from "firebase/database"
 
-const InlineEdit = ({value, setValue}) => {
+
+
+const InlineEdit = ({value, setValue, name, id}) => {
   const [editingValue, setEditingValue] = useState(value)
 
   const onChange = (event) => setEditingValue(event.target.value)
+
 
   const onKeyDown = (event) => {    
     if (event.key === "Enter" || event.key === "Escape") {
@@ -20,15 +25,25 @@ const InlineEdit = ({value, setValue}) => {
     }
   }
 
+  const handleUpdate = () => {
+    update(ref(realtime, `${name}/${id}`), {
+      input: editingValue,
+      }
+    )
+  }
+
   return (
-    <textarea className="editable"
-      rows={1}
-      aria-label="Step Description"
-      value={editingValue}
-      onBlur={onBlur}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      />
+    <div>
+      <textarea className="editable"
+        rows={1}
+        aria-label="Step Description"
+        value={editingValue}
+        onBlur={onBlur}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        />
+        <button onClick={handleUpdate}>Save your Changes!</button>
+    </div>
   )
 }
 
